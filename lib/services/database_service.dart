@@ -37,7 +37,14 @@ class DatabaseService{
   //INSERTAR
   Future<int> insertNote(Nota nota) async{
     final db = await database;
-    return await db.insert('notas', nota.toMap());
+    return await db.insert('notes', nota.toMap());
+  }
+
+   // OBTENER TODAS
+  Future<List<Nota>> obtenerNotas() async {
+    final db = await database;
+    final resultado = await db.query('notes', orderBy: 'fechaCreacion DESC');
+    return resultado.map((e) => Nota.fromMap(e)).toList();
   }
 
 }
