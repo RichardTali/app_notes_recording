@@ -20,10 +20,10 @@ class _HomeScreenState extends State<HomeScreen> {
     cargarNotas();
   }
 
-  Future<void> cargarNotas() async{
-    final data = await DatabaseService().obtenerNotas();
+  void cargarNotas() async{
+    final dbNotas = await DatabaseService().obtenerNotas();
     setState((){
-      notas = data;
+      notas = dbNotas;
     });
   }
 
